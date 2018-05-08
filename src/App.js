@@ -11,7 +11,7 @@ import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends Component {
     state = {
-        books: []
+        books: [],
     };
 
     componentDidMount() {
@@ -20,18 +20,19 @@ class BooksApp extends Component {
         }));
     }
 
-    changeShelf = (book, shelf) =>{
-            BooksAPI.update(book, shelf).then(res => {
-                book.shelf = shelf;
-                this.setState(currentState =>({
-                    books: [
-                        currentState.books.filter(bk => bk.id !== book.id)
-                    ]
-                }))
-            },
-
-        console.log(this.state.book))
+    changeShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf).then( ()=>
+        {
+            book.shelf = shelf;
+            this.setState({
+                books: [
+                    ...this.state.books
+                ]
+            })
+        })
     };
+
+
 
 
     render() {

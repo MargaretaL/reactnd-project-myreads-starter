@@ -13,11 +13,16 @@ class searchbooks extends Component {
         searchresult: []
     };
 
-    componentDidMount() {
-        BooksAPI.search().then((foundbook) => this.setState({
-            foundbook
-        }));
-    }
+
+
+    searchBooks = (query) => {
+        BooksAPI.search(query).then(result => {
+            this.setState({
+                searchresult:result
+        });
+            })
+    };
+
 
     render() {
         return (
@@ -25,19 +30,15 @@ class searchbooks extends Component {
                 <div className="search-books-bar">
                     <Link to="/" className="close-search">Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author"/>
+                        <input value={this.state.query} onChange={this.searchBooks} type="text" placeholder="Search by title or author"/>
 
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ol className="books-grid">
+                        {this.state.searchresult}
+                    </ol>
                 </div>
-                {this.state.searchresult.map(book => {
-                    return (
-                        <div>{book.title}</div>
-                    )
-                })
-                }
             </div>
         )
     }
