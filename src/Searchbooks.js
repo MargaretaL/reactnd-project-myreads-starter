@@ -4,24 +4,11 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import * as BooksAPI from './BooksAPI'
+import Book from './Book';
 
 
 class searchbooks extends Component {
 
-    state = {
-        searchresult: []
-    };
-
-
-
-    searchBooks = (query) => {
-        BooksAPI.search(query).then(result => {
-            this.setState({
-                searchresult:result
-        });
-            })
-    };
 
 
     render() {
@@ -30,13 +17,14 @@ class searchbooks extends Component {
                 <div className="search-books-bar">
                     <Link to="/" className="close-search">Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input value={this.state.query} onChange={this.searchBooks} type="text" placeholder="Search by title or author"/>
+                        <input value={this.props.query} onChange={event => this.props.search(event.target.value)} type="text"
+                               placeholder="Search by title or author"/>
 
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.searchresult}
+       <Book books={this.props.result} change={this.props.change}/>
                     </ol>
                 </div>
             </div>

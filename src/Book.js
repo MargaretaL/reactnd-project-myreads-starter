@@ -15,11 +15,14 @@ const book = (props) => {
                             <div className="book-cover" style={{
                                 width: 128,
                                 height: 193,
-                            }}>
-                                <img src={book.imageLinks.smallThumbnail} alt=""/>
+                            }}>{book.imageLinks=== undefined? (<img src="" alt=""/>)
+                                : (<img src={book.imageLinks.smallThumbnail} alt=""/>)
+                            }
                             </div>
                             <div className="book-shelf-changer">
-                                <select value={book.shelf} onChange={ (event)=> {props.changedShelf(book, event.target.value)}}>
+                                <select value={book.shelf} onChange={(event) => {
+                                    props.change(book, event.target.value)
+                                }}>
                                     <option value="none" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently
                                         Reading
