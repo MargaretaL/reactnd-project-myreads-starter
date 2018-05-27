@@ -14,7 +14,7 @@ class BooksApp extends Component {
         books: [],
         searchResults: [],
         query: '',
-        error: null
+        error: false
     };
 
     componentDidMount() {
@@ -26,6 +26,14 @@ class BooksApp extends Component {
     changeShelf = (book, shelf) => {
         BooksAPI.update(book, shelf).then(() => {
                 book.shelf = shelf;
+
+                let book2 = this.state.books.find(b => b.id === book.id);
+                if(book2){
+                    book2.shelf = shelf;
+                }else{
+                    this.state.books.push(book);
+                }
+
                 this.setState({
                     books: [
                         ...this.state.books
@@ -45,7 +53,7 @@ class BooksApp extends Component {
                             let book = this.state.books.find(b => b.id === searchResult.id);
                             if (book) {
                                 searchResult.shelf = book.shelf;
-                            }
+                            } else searchResult.shelf = 'none';
                         });
                         this.setState({searchResults: [...searchResults]})
                     }
