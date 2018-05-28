@@ -1,17 +1,29 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This is the first project for Udacity's React Fundamentals with added interactivity. The goal of this project was to add interactivity.
+A main page with a list of books placed on different shelves eg 'currently reading', the ability to move books from one shelf to another, 
+and also a search page where the user can search for books.
+ 
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
-
-## TL;DR
-
-To get started developing right away:
+## Installation
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-## What You're Getting
+## Added interactivity
+
+Four components have been created. All state is inside the App.js stateful component, from which all data is passed down to the other components. 
+The rest are functional components, Bookshelf.js component, where the books are filtered according to shelf. 
+Book.js component with onChange to be able to choose shelf, and Searchbooks.js component with an input field for typing queries. 
+
+## Routing
+
+Routing was added using react-router-dom.
+
+
+## What You're Getting (this was here before adding interactivity)
+
+
 ```bash
 ├── CONTRIBUTING.md
 ├── README.md - This file.
@@ -33,9 +45,8 @@ To get started developing right away:
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
-## Backend Server
+## Backend Server (backend from starter template)
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
